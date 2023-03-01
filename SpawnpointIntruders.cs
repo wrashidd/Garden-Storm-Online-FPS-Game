@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SpawnpointIntruders : MonoBehaviour
 {
-    [SerializeField] private GameObject playerSpawnGraphics;
-
+    [SerializeField]
+    private GameObject playerSpawnGraphics;
 
     private void Awake()
     {

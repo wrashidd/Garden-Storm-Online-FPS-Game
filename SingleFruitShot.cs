@@ -6,45 +6,52 @@ using UnityEngine;
 
 public class SingleFruitShot : Gun
 {
- [SerializeField] private Camera cam;
- private PhotonView PV;
- [SerializeField] private GameObject fruitBullet;
+    [SerializeField]
+    private Camera cam;
+    private PhotonView PV;
 
- private void Awake()
- {
-  PV = GetComponent<PhotonView>();
- }
+    [SerializeField]
+    private GameObject fruitBullet;
 
- public override void Use()
- {
-  //Shoot();
- }
+    private void Awake()
+    {
+        PV = GetComponent<PhotonView>();
+    }
 
- void Shoot()
- {
-  Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-  ray.origin = cam.transform.position;
-  if(Physics.Raycast(ray, out RaycastHit hit))
-  {
-   hit.collider.gameObject.GetComponent<IDamageable>()?.TakeFruit(((GunInfo)itemInfo).takeFruit);
-   PV.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
-  }
+    public override void Use()
+    {
+        //Shoot();
+    }
 
- 
- }
- 
- [PunRPC]
- void RPC_Shoot(Vector3 hitPosition, Vector3 hitNormal)
- {
-  //Instantiate(bullet, firePoint.position, firePoint.rotation);
-  //Debug.Log(hitPosition);
-  Collider[] colliders = Physics.OverlapSphere(hitPosition, 0.3f);
-  if (colliders.Length != 0)
-  {
-   GameObject fruitImpactObject = Instantiate(fruitImpactPrefab, hitPosition, Quaternion.LookRotation(hitNormal *0.001f, Vector3.up) * fruitImpactPrefab.transform.rotation);
-   Destroy(fruitImpactObject, 2f);
-   fruitImpactObject.transform.SetParent(colliders[0].transform);
-  }
- }
- 
+    void Shoot()
+    {
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        ray.origin = cam.transform.position;
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            hit.collider.gameObject
+                .GetComponent<IDamageable>()
+                ?.TakeFruit(((GunInfo)itemInfo).takeFruit);
+            PV.RPC("RPC_Shoot", RpcTarget.All, hit.point, hit.normal);
+        }
+    }
+
+    [PunRPC]
+    void RPC_Shoot(Vector3 hitPosition, Vector3 hitNormal)
+    {
+        //Instantiate(bullet, firePoint.position, firePoint.rotation);
+        //Debug.Log(hitPosition);
+        Collider[] colliders = Physics.OverlapSphere(hitPosition, 0.3f);
+        if (colliders.Length != 0)
+        {
+            GameObject fruitImpactObject = Instantiate(
+                fruitImpactPrefab,
+                hitPosition,
+                Quaternion.LookRotation(hitNormal * 0.001f, Vector3.up)
+                    * fruitImpactPrefab.transform.rotation
+            );
+            Destroy(fruitImpactObject, 2f);
+            fruitImpactObject.transform.SetParent(colliders[0].transform);
+        }
+    }
 }

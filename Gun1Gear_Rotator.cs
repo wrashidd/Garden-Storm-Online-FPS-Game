@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using UnityEngine;
 
 public class Gun1Gear_Rotator : MonoBehaviour
@@ -30,7 +29,6 @@ public class Gun1Gear_Rotator : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
             anim.SetBool("Once", true);
         }
         else

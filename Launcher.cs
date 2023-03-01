@@ -12,16 +12,30 @@ using Random = UnityEngine.Random;
 public class Launcher : MonoBehaviourPunCallbacks
 {
     public static Launcher Instance;
-    [SerializeField] private TMP_InputField roomNameInputField;
 
-    [SerializeField] private TMP_Text errorText;
+    [SerializeField]
+    private TMP_InputField roomNameInputField;
 
-    [SerializeField] private TMP_Text roomNameText;
-    [SerializeField] private Transform roomListContent;
-    [SerializeField] private Transform playerListContent;
-    [SerializeField] private GameObject roomListItemPrefab;
-    [SerializeField] private GameObject playerListItemPrefab;
-    [SerializeField] private GameObject startGameButton;
+    [SerializeField]
+    private TMP_Text errorText;
+
+    [SerializeField]
+    private TMP_Text roomNameText;
+
+    [SerializeField]
+    private Transform roomListContent;
+
+    [SerializeField]
+    private Transform playerListContent;
+
+    [SerializeField]
+    private GameObject roomListItemPrefab;
+
+    [SerializeField]
+    private GameObject playerListItemPrefab;
+
+    [SerializeField]
+    private GameObject startGameButton;
 
     private void Awake()
     {
@@ -40,7 +54,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Connected to " + PhotonNetwork.CloudRegion + " Server");
         PhotonNetwork.JoinLobby();
         PhotonNetwork.AutomaticallySyncScene = true;
-
     }
 
     public override void OnJoinedLobby()
@@ -61,7 +74,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.instance.OpenMenu("Loading");
     }
 
-
     public override void OnJoinedRoom()
     {
         MenuManager.instance.OpenMenu("Room");
@@ -74,8 +86,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         }
         for (int i = 0; i < players.Count(); i++)
         {
-            
-            Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
+            Instantiate(playerListItemPrefab, playerListContent)
+                .GetComponent<PlayerListItem>()
+                .SetUp(players[i]);
         }
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
@@ -88,13 +101,14 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         errorText.text = "Room Creation Failed: " + message;
-       MenuManager.instance.OpenMenu("Error");
+        MenuManager.instance.OpenMenu("Error");
     }
 
     public void StartGame()
     {
         PhotonNetwork.LoadLevel(1);
     }
+
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
@@ -110,10 +124,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRoom(info.Name);
         MenuManager.instance.OpenMenu("Loading");
-       
     }
-    
-    
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (Transform trans in roomListContent)
@@ -125,18 +137,14 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             if (roomList[i].RemovedFromList)
                 continue;
-            Instantiate(roomListItemPrefab, roomListContent).GetComponent<RoomListItem>().SetUp(roomList[i]);
+            Instantiate(roomListItemPrefab, roomListContent)
+                .GetComponent<RoomListItem>()
+                .SetUp(roomList[i]);
         }
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        
-    }
+    public override void OnPlayerEnteredRoom(Player newPlayer) { }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 }

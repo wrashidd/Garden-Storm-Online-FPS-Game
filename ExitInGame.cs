@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class ExitInGame : MonoBehaviour
 {
     public GameObject OnOFF;
-   // public PlayerController  _playerController;
-   
+
+    // public PlayerController  _playerController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +19,8 @@ public class ExitInGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     EscapeInGame();
+        EscapeInGame();
     }
-
 
     private void EscapeInGame()
     {
@@ -33,8 +33,7 @@ public class ExitInGame : MonoBehaviour
                 PlayerController.Instance.gamePauseToMenu = true;
                 Cursor.lockState = CursorLockMode.Locked;
             }
-
-            else 
+            else
             {
                 OnOFF.GetComponent<Transform>().gameObject.SetActive(true);
                 PlayerController.Instance.gamePauseToMenu = false;
@@ -48,18 +47,17 @@ public class ExitInGame : MonoBehaviour
         OnOFF.GetComponent<Transform>().gameObject.SetActive(false);
         PlayerController.Instance.gamePauseToMenu = true;
         Cursor.lockState = CursorLockMode.Locked;
-        
     }
 
     public void LoadMenu()
     {
-       // SceneManager.LoadScene(sceneBuildIndex:0);
-       StartCoroutine(ExitBackToMainMenu());
+        // SceneManager.LoadScene(sceneBuildIndex:0);
+        StartCoroutine(ExitBackToMainMenu());
     }
 
     public void QuitGame()
     {
-         Application.Quit();
+        Application.Quit();
     }
 
     IEnumerator ExitBackToMainMenu()
@@ -69,6 +67,5 @@ public class ExitInGame : MonoBehaviour
             yield return null;
         Destroy((RoomManager.Instance.gameObject));
         SceneManager.LoadScene(0);
-    } 
-        
+    }
 }

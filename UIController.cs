@@ -5,15 +5,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+
 public class UIController : MonoBehaviour
 {
     public static UIController instance;
     public Slider fruitCounterSlider;
-    public TextMeshProUGUI fruitCounterText, gameOverText, gameOverSubText;
+    public TextMeshProUGUI fruitCounterText,
+        gameOverText,
+        gameOverSubText;
     public Image sliderFill;
     public Color fruitColorRed = new Color(253f, 94f, 83f);
     public Color fruitColorGreen = new Color(185f, 230f, 178f, 255f);
     private PhotonView PV;
+
     private void Awake()
     {
         instance = this;
@@ -31,8 +35,5 @@ public class UIController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 }

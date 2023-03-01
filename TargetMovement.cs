@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TargetMovement : MonoBehaviour
 {
-    public bool bShouldMove, bShouldRotate;
+    public bool bShouldMove,
+        bShouldRotate;
 
-    public float moveSpeed, rotateSpeed;
+    public float moveSpeed,
+        rotateSpeed;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
     // Update is called once per frame
     void Update()
@@ -23,7 +23,9 @@ public class TargetMovement : MonoBehaviour
 
         if (bShouldRotate)
         {
-            transform.rotation =Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, rotateSpeed * Time.deltaTime, 0f));
+            transform.rotation = Quaternion.Euler(
+                transform.rotation.eulerAngles + new Vector3(0f, rotateSpeed * Time.deltaTime, 0f)
+            );
         }
     }
 }

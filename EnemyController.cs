@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 public class EnemyController : MonoBehaviour
 {
-    
     private bool bChasing;
-    public float distanceToChase = 10f, distanceToLose = 15f, distanceToStop = 2f;
+    public float distanceToChase = 10f,
+        distanceToLose = 15f,
+        distanceToStop = 2f;
 
-    private Vector3 targetPoint, startPoint;
+    private Vector3 targetPoint,
+        startPoint;
 
     public NavMeshAgent agent;
     public float keepChasingTime = 5f;
@@ -19,7 +20,7 @@ public class EnemyController : MonoBehaviour
     public Transform firePoint;
     public float fireRate;
     private float fireCount;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class EnemyController : MonoBehaviour
     {
         targetPoint = PlayerController.Instance.transform.position;
         targetPoint.y = transform.position.y;
-        
+
         if (!bChasing)
         {
             if (Vector3.Distance(transform.position, targetPoint) < distanceToChase)
@@ -57,7 +58,6 @@ public class EnemyController : MonoBehaviour
             {
                 agent.destination = targetPoint;
             }
-            
 
             if (Vector3.Distance(transform.position, targetPoint) > distanceToLose)
             {
@@ -72,7 +72,5 @@ public class EnemyController : MonoBehaviour
                 Instantiate(bullet, firePoint.position, firePoint.rotation);
             }
         }
-       
     }
 }
- 

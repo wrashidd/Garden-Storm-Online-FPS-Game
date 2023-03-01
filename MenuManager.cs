@@ -6,16 +6,14 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager instance;
-   
-    
-    [SerializeField] private Menu[] _menus;
+
+    [SerializeField]
+    private Menu[] _menus;
 
     private void Awake()
     {
         instance = this;
-       
     }
-
 
     public void OpenMenu(string menuName)
     {
@@ -41,7 +39,7 @@ public class MenuManager : MonoBehaviour
                 CloseMenu(_menus[i]);
             }
         }
-        
+
         menu.Open();
     }
 
@@ -49,6 +47,4 @@ public class MenuManager : MonoBehaviour
     {
         menu.Close();
     }
-
-    
 }

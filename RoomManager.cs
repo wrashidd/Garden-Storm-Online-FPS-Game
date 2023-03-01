@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
-
     public static RoomManager Instance;
 
     private void Awake()
@@ -23,34 +22,33 @@ public class RoomManager : MonoBehaviourPunCallbacks
         Instance = this;
     }
 
-  public override void OnEnable()
+    public override void OnEnable()
     {
         base.OnEnable();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-  public override void OnDisable()
-  {
-      base.OnDisable();
-      SceneManager.sceneLoaded -= OnSceneLoaded;
-  }
-
-  void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-  {
-      if (scene.buildIndex == 1) // First Garden 
-      {
-          PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
-      }
-  }
-  // Start is called before the first frame update
-    void Start()
+    public override void OnDisable()
     {
-        
+        base.OnDisable();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        if (scene.buildIndex == 1) // First Garden
+        {
+            PhotonNetwork.Instantiate(
+                Path.Combine("PhotonPrefabs", "PlayerManager"),
+                Vector3.zero,
+                Quaternion.identity
+            );
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start() { }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 }

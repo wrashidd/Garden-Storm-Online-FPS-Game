@@ -8,13 +8,15 @@ using Photon.Pun;
 public class BulletController : MonoBehaviour
 {
     //Shooting ************************************************
-    public float moveSpeed, lifeTime;
+    public float moveSpeed,
+        lifeTime;
     public Rigidbody theRB;
     public GameObject splashEffect;
     public int damage = 1;
     private int _addFruit = 1;
 
-    public bool bDamageEnemy, bDemagePlayer;
+    public bool bDamageEnemy,
+        bDemagePlayer;
     private PhotonView PV;
 
     //Pulling *************************************************
@@ -24,22 +26,12 @@ public class BulletController : MonoBehaviour
         PV = GetComponent<PhotonView>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-
         StartCoroutine(BulletScalorRoutine());
     }
 
-    
-    
-    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy") && bDamageEnemy)
@@ -48,11 +40,12 @@ public class BulletController : MonoBehaviour
             other.gameObject.GetComponent<EnemyHealthController>().DamageEnemy(damage);
         }
         Destroy(gameObject);
-        Instantiate(splashEffect, transform.position + (transform.forward * (-moveSpeed*Time.deltaTime)), transform.rotation);
-
-       
+        Instantiate(
+            splashEffect,
+            transform.position + (transform.forward * (-moveSpeed * Time.deltaTime)),
+            transform.rotation
+        );
     }
-
 
     IEnumerator BulletScalorRoutine()
     {
@@ -65,9 +58,5 @@ public class BulletController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
-
-    
-    
 }

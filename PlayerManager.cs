@@ -26,33 +26,41 @@ public class PlayerManager : MonoBehaviour
             {
                 if (myTeam == 1)
                 {
-                    CreateControllerDefenders();  
+                    CreateControllerDefenders();
                 }
             }
-            else 
+            else
             {
-                CreateControllerIntruders();  
+                CreateControllerIntruders();
             }
         }
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
 
     void CreateControllerDefenders()
     {
         Transform _spawnpoint = SpawnManager.Instance.GetSpawnpointDefenders();
-        _controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player"), _spawnpoint.position, _spawnpoint.rotation, 0, new object[]{PV.ViewID});  //Instantiate Player Controller
+        _controller = PhotonNetwork.Instantiate(
+            Path.Combine("PhotonPrefabs", "Player"),
+            _spawnpoint.position,
+            _spawnpoint.rotation,
+            0,
+            new object[] { PV.ViewID }
+        ); //Instantiate Player Controller
     }
 
     void CreateControllerIntruders()
     {
         Transform _spawnpoint = SpawnManager.Instance.GetSpawnpointIntruders();
-        _controller = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerIntruder"), _spawnpoint.position, _spawnpoint.rotation, 0, new object[]{PV.ViewID});  //Instantiate Player Controller
-
+        _controller = PhotonNetwork.Instantiate(
+            Path.Combine("PhotonPrefabs", "PlayerIntruder"),
+            _spawnpoint.position,
+            _spawnpoint.rotation,
+            0,
+            new object[] { PV.ViewID }
+        ); //Instantiate Player Controller
     }
 
     public void GameOver()
@@ -60,7 +68,6 @@ public class PlayerManager : MonoBehaviour
         PhotonNetwork.Destroy(_controller);
         CreateControllerDefenders();
     }
-
 
     [PunRPC]
     void RPC_GetTeam()

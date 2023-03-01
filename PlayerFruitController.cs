@@ -8,17 +8,18 @@ using Photon.Pun;
 
 public class PlayerFruitController : MonoBehaviour
 {
-
     public static PlayerFruitController instance;
-    public int maxFruits, currentFruits;
+    public int maxFruits,
+        currentFruits;
+
     //private PhotonView PV;
-   
-    
-//----------------------Game Events Start-----------------------------------------
+
+
+    //----------------------Game Events Start-----------------------------------------
     private void Awake()
     {
         instance = this;
-       // PV = GetComponent<PhotonView>();
+        // PV = GetComponent<PhotonView>();
     }
 
     // Start is called before the first frame update
@@ -32,29 +33,28 @@ public class PlayerFruitController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() { }
+
     /*private void FixedUpdate()
     {
         if (!PV.IsMine)
             return;
     }
     */
-    
+
     //----------------------Game Events End-----------------------------------------
 
 
-//--------------------------Methods-------------------------------------------------
+    //--------------------------Methods-------------------------------------------------
 
-    public void LoseFruits(int loseAmount) 
+    public void LoseFruits(int loseAmount)
     {
         if (currentFruits > 0)
         {
             currentFruits -= loseAmount;
             UIController.instance.fruitCounterSlider.value = currentFruits;
-            UIController.instance.fruitCounterText.text = "Fruits: " + currentFruits + "/" + maxFruits;
+            UIController.instance.fruitCounterText.text =
+                "Fruits: " + currentFruits + "/" + maxFruits;
         }
 
         if (currentFruits <= 0)
@@ -75,12 +75,8 @@ public class PlayerFruitController : MonoBehaviour
 
     IEnumerator fruitBarColorChange()
     {
-        UIController.instance.sliderFill.color= UIController.instance.fruitColorGreen;
+        UIController.instance.sliderFill.color = UIController.instance.fruitColorGreen;
         yield return new WaitForSeconds(0.2f);
-        UIController.instance.sliderFill.color= UIController.instance.fruitColorRed;
-        
+        UIController.instance.sliderFill.color = UIController.instance.fruitColorRed;
     }
 }
-
-
-

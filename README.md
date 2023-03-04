@@ -27,8 +27,7 @@ Game Design: Created prototype of a **Multiplayer Online First Person Shooter** 
 **From high poly to stylized low poly using Houdini Starter Kit**
 
 ![process02](https://user-images.githubusercontent.com/35751462/222877894-ed83ffe7-3125-4e89-8577-04cd26d3f93a.png)
-&nbsp;
-&nbsp;
+###  ###
 
 ![tree_shader_process](https://user-images.githubusercontent.com/35751462/222877956-f9056e5c-28fe-4b88-8f78-6111fcf72ec9.png)
 **Stylized Tree Bush Creation Process**
@@ -36,12 +35,19 @@ Game Design: Created prototype of a **Multiplayer Online First Person Shooter** 
 
 ![tree_shader_clear](https://user-images.githubusercontent.com/35751462/222878071-5df59ce9-0a15-420c-a2d3-246f01db0681.png)
 **Unity Shader Graph**
+###  ###
+###  ###
+###  ###
 
 ![gw_gun_closeup](https://user-images.githubusercontent.com/35751462/222878430-43e30433-66fb-436b-9c54-5905e30cd242.png)
-**Fruit Gravitron Gun**
+### Fruit Gravitron Gun ###
 The Fruit Gravitron is a powerful and versatile weapon that operates like a gravity gun. It allows players to collect fruits from a distance, resize them when they reach the barrel of the gun and resize them back to their original size while shooting these fruits.
+###  ###
 ![gw_gun_02_low](https://user-images.githubusercontent.com/35751462/222878487-38cd6d3c-58f8-4834-b32d-ae03eeff1449.gif)
-
+###  ###
+###  ###
+###  ###
+###  ###
 
 ## Screenshots ##
 
